@@ -12,6 +12,7 @@ public class Main {
 
         try (ServerSocket serverSocket = new ServerSocket(80)) {
 
+            System.out.println("Awaiting Connection From Client..");
 
             //noinspection InfiniteLoopStatement
             while (true) {
