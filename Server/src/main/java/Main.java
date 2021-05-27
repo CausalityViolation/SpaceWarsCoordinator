@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Server server = new Server();
         ExecutorService executorService = Executors.newCachedThreadPool();
-        try (ServerSocket serverSocket = new ServerSocket(5050)) {
+        try (ServerSocket serverSocket = new ServerSocket(8080)) {
             while (true) {
                 Socket client = serverSocket.accept();
                 executorService.submit(() -> server.handleConnection(client));
