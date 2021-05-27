@@ -6,13 +6,19 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
+
         Server server = new Server();
         ExecutorService executorService = Executors.newCachedThreadPool();
-        try (ServerSocket serverSocket = new ServerSocket(8080)) {
+
+        try (ServerSocket serverSocket = new ServerSocket(80)) {
+
+
+            //noinspection InfiniteLoopStatement
             while (true) {
                 Socket client = serverSocket.accept();
                 executorService.submit(() -> server.handleConnection(client));
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

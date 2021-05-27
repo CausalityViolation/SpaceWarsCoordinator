@@ -9,14 +9,44 @@ public class Engine {
     }
 
     public String postResponse(Request req) {
-        return "Hi from POST";
+        return """
+     ========================================
+       ＜￣｀ヽ、　　   　 　／￣＞
+       　ゝ、　　＼ ／⌒ヽ,ノ   /
+       　    ゝ、　`（ ´oωo)／
+              　>　 　 　,ノ
+                ∠_,,,/´””
+            POST, YOU FOOLS!!!
+        Regards From Dolen Support
+     ========================================
+     """;
     }
 
     public String headResponse(Request req) {
-        return "Hi from HEAD";
+        return """
+     ========================================
+       ＜￣｀ヽ、　　   　 　／￣＞
+       　ゝ、　　＼ ／⌒ヽ,ノ   /
+       　    ゝ、　`（ ´oωo)／
+              　>　 　 　,ノ
+                ∠_,,,/´””
+            HEAD, YOU FOOLS!!!
+        Regards From Dolen Support
+     ========================================
+     """;
     }
 
     public String getResponse(Request req) {
-        return "Hi from GET";
+        return """
+     ========================================
+       ＜￣｀ヽ、　　   　 　／￣＞
+       　ゝ、　　＼ ／⌒ヽ,ノ   /
+       　    ゝ、　`（ ´oωo)／
+              　>　 　 　,ノ
+                ∠_,,,/´””
+            GET, YOU FOOLS!!!
+        Regards From Dolen Support
+     ========================================
+     """;
     }
 }
