@@ -1,3 +1,4 @@
+import javax.print.attribute.standard.MediaSize;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,5 +28,7 @@ public class Server {
             tempList.add(line);
             System.out.println(line);
         }
+        Engine engine = new Engine();
+        engine.handleRequest(tempList);
     }
 }
