@@ -1,9 +1,13 @@
+import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Request {
 
     HTTPtypes type;
     String url;
+    Map<String, String> urlParams = new HashMap<>();
 
     public Request(List<String> tempList) {
 
@@ -16,14 +20,34 @@ public class Request {
             default -> throw new RuntimeException("Invalid HTTP request type");
         }
 
-        String[] url = tempList.get(1).split(" ");
-        this.url = url[1].replace("\r\n", "");
+        String[] url = tempList.get(0).split("[ ]");
+
+        this.url = setUrl(url[1]);
+    }
+
+    private String setUrl(String s) {
+
+        s = URLDecoder.decode(s);
+
+        if (s.contains("?")) {
+
+            String[] splitUrl = s.split("[?=&]");
+
+            if (splitUrl.length > 1) {
+                for (int i = 1; i < (splitUrl.length - 1); i = i + 2) {
+                    urlParams.put(splitUrl[i], splitUrl[i + 1]);
+                }
+                return splitUrl[0];
+            }
+        }
+        return s;
     }
 
     @Override
     public String toString() {
         return "<Request>" +
                 "\nType:  " + type +
-                "\nUrl: " + url;
+                "\nUrl: " + url +
+                "\nParams: " + urlParams;
     }
 }
