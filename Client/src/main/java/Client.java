@@ -13,16 +13,19 @@ import java.net.Socket;
 //Siönäs Dator:
 //92.33.174.12:80
 
+//Egen dator TCP
+//212.181.145.114:80
+
 public class Client {
 
     public static void main(String[] args) {
 
         try {
-            Socket socket = new Socket("92.33.174.12", 80);
+            Socket socket = new Socket("127.0.0.1", 80);
 
             var output = new PrintWriter(socket.getOutputStream());
 
-            output.println("GET /A%20True/First%20Victory.pdf HTTP/1.1");
+            output.println("GET /klutch.png");
             output.println("Host: www.TeamMartin.com\r\n\r\n");
             output.flush();
 

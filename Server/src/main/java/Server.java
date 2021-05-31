@@ -16,7 +16,8 @@ public class Server {
 
             inputFromClient = new BufferedReader(new InputStreamReader((client.getInputStream())));
             Request req = readRequest(inputFromClient);
-            var outputToClient = new PrintWriter(client.getOutputStream());
+
+            var outputToClient = client.getOutputStream();
             sendResponse(outputToClient, req);
 
         } catch (IOException e) {
@@ -24,13 +25,17 @@ public class Server {
         }
     }
 
-    private void sendResponse(PrintWriter outputToClient, Request req) {
+    private void sendResponse(OutputStream outputToClient, Request req) throws IOException {
 
-        switch (req.type) {
-            case POST -> outputToClient.println(engine.postResponse(req));
-            case HEAD -> outputToClient.println(engine.headResponse(req));
-            case GET -> outputToClient.println(engine.getResponse(req));
+        if (req.getUrl().endsWith("spaceship")) {
+            sendImageResponse(outputToClient);
+        }
 
+        switch (req.getType()) {
+
+            case POST -> outputToClient.write(engine.postResponse(req).getBytes());
+            case HEAD -> outputToClient.write(engine.headResponse(req).getBytes());
+            case GET -> outputToClient.write(engine.getResponse(req).getBytes());
         }
 
         outputToClient.close();

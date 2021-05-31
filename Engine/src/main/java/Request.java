@@ -5,9 +5,29 @@ import java.util.Map;
 
 public class Request {
 
-    HTTPtypes type;
-    String url;
-    Map<String, String> urlParams = new HashMap<>();
+    private HTTPtypes type;
+    private String url;
+    private Map<String, String> urlParams = new HashMap<>();
+
+    public HTTPtypes getType() {
+        return type;
+    }
+
+    public void setType(HTTPtypes type) {
+        this.type = type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public Map<String, String> getUrlParams() {
+        return urlParams;
+    }
+
+    public void setUrlParams(Map<String, String> urlParams) {
+        this.urlParams = urlParams;
+    }
 
     public Request(List<String> tempList) {
 
