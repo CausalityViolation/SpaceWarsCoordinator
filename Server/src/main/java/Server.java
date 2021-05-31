@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class Server {
             case GET -> outputToClient.println(engine.getResponse(req));
 
         }
+
         outputToClient.close();
     }
 
@@ -39,7 +41,8 @@ public class Server {
         String header;
         byte[] data = new byte[0];
 
-        File file = new File("klutch.png");
+        File file = Path.of("Server", "target", "classes", "klutch.png").toFile();
+
         if (!(file.exists() && !file.isDirectory())) {
 
             header = "HTTP/1.1 404 File Not Found\r\nContent-length: 0\r\n\r\n";
@@ -59,6 +62,7 @@ public class Server {
 
         outputToClient.write(header.getBytes());
         outputToClient.write(data);
+        outputToClient.close();
 
 
     }

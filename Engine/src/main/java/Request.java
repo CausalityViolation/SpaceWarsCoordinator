@@ -1,5 +1,4 @@
 import java.net.URLDecoder;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,7 @@ public class Request {
             case "HE" -> type = HTTPtypes.HEAD;
             case "GE" -> type = HTTPtypes.GET;
             case "PO" -> type = HTTPtypes.POST;
-            //Verkar inte kasta exception. Något att titta på senare kanske?
+
             default -> throw new RuntimeException("Invalid HTTP request type");
         }
 
