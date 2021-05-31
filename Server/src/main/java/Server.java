@@ -27,8 +27,26 @@ public class Server {
 
     private void sendResponse(OutputStream outputToClient, Request req) throws IOException {
 
-        if (req.getUrl().endsWith("spaceship")) {
-            sendImageResponse(outputToClient);
+        if (req.getUrl().endsWith("klutch")) {
+
+            sendImageResponse(outputToClient, req);
+
+        } else if (req.getUrl().endsWith("xwing")) {
+
+            sendImageResponse(outputToClient, req);
+
+        } else if (req.getUrl().endsWith("falcon")) {
+
+            sendImageResponse(outputToClient, req);
+
+        } else if (req.getUrl().endsWith("fighter")) {
+
+            sendImageResponse(outputToClient, req);
+
+        } else if (req.getUrl().endsWith("sun")) {
+
+            sendImageResponse(outputToClient, req);
+
         }
 
         switch (req.getType()) {
@@ -41,12 +59,32 @@ public class Server {
         outputToClient.close();
     }
 
-    private void sendImageResponse(OutputStream outputToClient) throws IOException {
+    private void sendImageResponse(OutputStream outputToClient, Request req) throws IOException {
 
         String header;
         byte[] data = new byte[0];
+        File file = null;
 
-        File file = Path.of("Server", "target", "classes", "klutch.png").toFile();
+        if (req.getUrl().endsWith("klutch")) {
+
+            file = Path.of("Server", "target", "classes", "klutch.png").toFile();
+
+        } else if (req.getUrl().endsWith("xwing")) {
+
+            file = Path.of("Server", "target", "classes", "xwing.jpeg").toFile();
+
+        } else if (req.getUrl().endsWith("falcon")) {
+
+            file = Path.of("Server", "target", "classes", "falcon.jpg").toFile();
+
+        } else if (req.getUrl().endsWith("fighter")) {
+
+            file = Path.of("Server", "target", "classes", "fighter.png").toFile();
+
+        } else if (req.getUrl().endsWith("sun")) {
+            file = Path.of("Server", "target", "classes", "praiseTheSun.jpg").toFile();
+        }
+
 
         if (!(file.exists() && !file.isDirectory())) {
 
