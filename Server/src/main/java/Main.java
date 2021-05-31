@@ -14,7 +14,6 @@ public class Main {
 
             System.out.println("Awaiting Connection From Client..");
 
-            //noinspection InfiniteLoopStatement
             while (true) {
                 Socket client = serverSocket.accept();
                 executorService.submit(() -> server.handleConnection(client));

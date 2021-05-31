@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,14 +57,13 @@ public class Server {
             case GET -> outputToClient.write(engine.getResponse(req).getBytes());
         }
 
-        outputToClient.close();
     }
 
     private void sendImageResponse(OutputStream outputToClient, Request req) throws IOException {
 
-        String header;
+        String header = "";
         byte[] data = new byte[0];
-        File file = null;
+        File file = Path.of("Server", "target", "classes", "praiseTheSun.png").toFile();
 
         if (req.getUrl().endsWith("klutch")) {
 
@@ -90,22 +90,27 @@ public class Server {
 
             header = "HTTP/1.1 404 File Not Found\r\nContent-length: 0\r\n\r\n";
 
+
         } else {
+
             try (FileInputStream fileInputStream = new FileInputStream(file)) {
 
                 data = new byte[(int) file.length()];
                 fileInputStream.read(data);
+
+                var contentType = Files.probeContentType(file.toPath());
+
+                header = "HTTP/1.1 200 OK\r\nContent-Type: "+contentType+"\r\nContent-length: " + data.length +"\r\n\r\n";
 
             } catch (IOException error) {
                 error.printStackTrace();
             }
         }
 
-        header = "HTTP/1.1 200 OK\r\nContent-Type: image/png\r\nContent-Length: " + data.length + "\r\n\r\n";
-
         outputToClient.write(header.getBytes());
         outputToClient.write(data);
-        outputToClient.close();
+
+        outputToClient.flush();
 
 
     }

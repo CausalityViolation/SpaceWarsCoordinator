@@ -12,43 +12,33 @@ public class Engine {
 
     public String postResponse(Request req) {
         return """
-                ========================================
-                  ＜￣｀ヽ、　　   　 　／￣＞
-                  　ゝ、　　＼ ／⌒ヽ,ノ   /
-                  　    ゝ、　`（ ´oωo)／
-                         　>　 　 　,ノ
-                           ∠_,,,/´””
-                       POST, YOU FOOLS!!!
-                   Regards From Dolen Support
-                ========================================
+                HTTP/1.1 200 OK
+                Content-Length: 0\r\n\r\n
                 """;
     }
 
     public String headResponse(Request req) {
         return """
-                ========================================
-                  ＜￣｀ヽ、　　   　 　／￣＞
-                  　ゝ、　　＼ ／⌒ヽ,ノ   /
-                  　    ゝ、　`（ ´oωo)／
-                         　>　 　 　,ノ
-                           ∠_,,,/´””
-                       HEAD, YOU FOOLS!!!
-                   Regards From Dolen Support
-                ========================================
+                HTTP/1.1 404
+                Content-Length: 0\r\n\r\n
                 """;
     }
 
     public String getResponse(Request req) {
         return """
-                ========================================
+                HTTP/1.1 200 OK\
+                Content-Length: 0\r\n\r\n
+                                
+                ====================================
                   ＜￣｀ヽ、　　   　 　／￣＞
                   　ゝ、　　＼ ／⌒ヽ,ノ   /
                   　    ゝ、　`（ ´oωo)／
                          　>　 　 　,ノ
                            ∠_,,,/´””
-                       GET, YOU FOOLS!!!
+                        GET, YOU FOOLS!!!
                    Regards From Dolen Support
-                ========================================
+                ====================================
+                                
                 """;
     }
 

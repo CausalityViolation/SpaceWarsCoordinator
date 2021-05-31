@@ -25,7 +25,7 @@ public class Client {
 
             var output = new PrintWriter(socket.getOutputStream());
 
-            output.println("GET /klutch.png");
+            output.println("GET /nisse.jpeg");
             output.println("Host: www.TeamMartin.com\r\n\r\n");
             output.flush();
 
