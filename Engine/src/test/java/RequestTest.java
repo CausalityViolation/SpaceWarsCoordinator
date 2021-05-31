@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RequestTest {
 
@@ -141,5 +142,13 @@ public class RequestTest {
         assertThat(request.type).isEqualTo(HTTPtypes.GET);
         assertThat(request.url).isEqualTo("/a folder/first document.pdf");
         assertThat(request.urlParams).isEmpty();
+    }
+
+    @Test
+    void invalidRequestThrowsException() {
+
+        testList.add("BAJSKORV");
+        testList.add("JIMI HENDRIX");
+        assertThrows(RuntimeException.class, () -> new Request(testList));
     }
 }

@@ -1,3 +1,4 @@
+import java.io.PrintWriter;
 import java.util.List;
 
 public class Engine {
@@ -10,43 +11,43 @@ public class Engine {
 
     public String postResponse(Request req) {
         return """
-     ========================================
-       ＜￣｀ヽ、　　   　 　／￣＞
-       　ゝ、　　＼ ／⌒ヽ,ノ   /
-       　    ゝ、　`（ ´oωo)／
-              　>　 　 　,ノ
-                ∠_,,,/´””
-            POST, YOU FOOLS!!!
-        Regards From Dolen Support
-     ========================================
-     """;
+                ========================================
+                  ＜￣｀ヽ、　　   　 　／￣＞
+                  　ゝ、　　＼ ／⌒ヽ,ノ   /
+                  　    ゝ、　`（ ´oωo)／
+                         　>　 　 　,ノ
+                           ∠_,,,/´””
+                       POST, YOU FOOLS!!!
+                   Regards From Dolen Support
+                ========================================
+                """;
     }
 
     public String headResponse(Request req) {
         return """
-     ========================================
-       ＜￣｀ヽ、　　   　 　／￣＞
-       　ゝ、　　＼ ／⌒ヽ,ノ   /
-       　    ゝ、　`（ ´oωo)／
-              　>　 　 　,ノ
-                ∠_,,,/´””
-            HEAD, YOU FOOLS!!!
-        Regards From Dolen Support
-     ========================================
-     """;
+                ========================================
+                  ＜￣｀ヽ、　　   　 　／￣＞
+                  　ゝ、　　＼ ／⌒ヽ,ノ   /
+                  　    ゝ、　`（ ´oωo)／
+                         　>　 　 　,ノ
+                           ∠_,,,/´””
+                       HEAD, YOU FOOLS!!!
+                   Regards From Dolen Support
+                ========================================
+                """;
     }
 
     public String getResponse(Request req) {
         return """
-     ========================================
-       ＜￣｀ヽ、　　   　 　／￣＞
-       　ゝ、　　＼ ／⌒ヽ,ノ   /
-       　    ゝ、　`（ ´oωo)／
-              　>　 　 　,ノ
-                ∠_,,,/´””
-            GET, YOU FOOLS!!!
-        Regards From Dolen Support
-     ========================================
-     """;
+                ========================================
+                  ＜￣｀ヽ、　　   　 　／￣＞
+                  　ゝ、　　＼ ／⌒ヽ,ノ   /
+                  　    ゝ、　`（ ´oωo)／
+                         　>　 　 　,ノ
+                           ∠_,,,/´””
+                       GET, YOU FOOLS!!!
+                   Regards From Dolen Support
+                ========================================
+                """;
     }
 }

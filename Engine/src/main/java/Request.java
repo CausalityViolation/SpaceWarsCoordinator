@@ -1,4 +1,5 @@
 import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ public class Request {
         String[] url = tempList.get(0).split("[ ]");
 
         this.url = setUrl(url[1]);
+
     }
 
     private String setUrl(String s) {

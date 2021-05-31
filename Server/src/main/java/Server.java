@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +34,35 @@ public class Server {
         outputToClient.close();
     }
 
+    private void sendImageResponse(OutputStream outputToClient) throws IOException {
+
+        String header;
+        byte[] data = new byte[0];
+
+        File file = new File("klutch.png");
+        if (!(file.exists() && !file.isDirectory())) {
+
+            header = "HTTP/1.1 404 File Not Found\r\nContent-length: 0\r\n\r\n";
+
+        } else {
+            try (FileInputStream fileInputStream = new FileInputStream(file)) {
+
+                data = new byte[(int) file.length()];
+                fileInputStream.read(data);
+
+            } catch (IOException error) {
+                error.printStackTrace();
+            }
+        }
+
+        header = "HTTP/1.1 200 OK\r\nContent-Type: image/png\r\nContent-Length: " + data.length + "\r\n\r\n";
+
+        outputToClient.write(header.getBytes());
+        outputToClient.write(data);
+
+
+    }
+
     private Request readRequest(BufferedReader inputFromClient) throws IOException {
 
         List<String> tempList = new ArrayList<>();
@@ -53,6 +79,4 @@ public class Server {
         }
         return engine.handleRequest(tempList);
     }
-
-
 }
