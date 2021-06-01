@@ -19,14 +19,14 @@ public class Engine {
 
     public String headResponse(Request req) {
         return """
-                HTTP/1.1 404
+                HTTP/1.1 200 OK
                 Content-Length: 0\r\n\r\n
                 """;
     }
 
     public String getResponse(Request req) {
         return """
-                HTTP/1.1 200 OK\
+                HTTP/1.1 200 OK\r\n\r\n
                 Content-Length: 0\r\n\r\n
                                 
                 ====================================

@@ -28,44 +28,27 @@ public class Server {
 
     private void sendResponse(OutputStream outputToClient, Request req) throws IOException {
 
-        if (req.getUrl().endsWith("klutch")) {
-
-            sendImageResponse(outputToClient, req);
-
-        } else if (req.getUrl().endsWith("xwing")) {
-
-            sendImageResponse(outputToClient, req);
-
-        } else if (req.getUrl().endsWith("falcon")) {
-
-            sendImageResponse(outputToClient, req);
-
-        } else if (req.getUrl().endsWith("fighter")) {
+        if (req.getUrl().length()>1) {
 
             sendImageResponse(outputToClient, req);
 
         } else {
 
-            //String header = "HTTP/1.1 404 File Not Found\r\nContent-length: 0\r\n\r\n";
-            //outputToClient.write(header.getBytes());
-            sendImageResponse(outputToClient, req);
+            switch (req.getType()) {
+
+                case POST -> outputToClient.write(engine.postResponse(req).getBytes());
+                case HEAD -> outputToClient.write(engine.headResponse(req).getBytes());
+                case GET -> outputToClient.write(engine.getResponse(req).getBytes());
+
+            }
         }
-
-        switch (req.getType()) {
-
-            case POST -> outputToClient.write(engine.postResponse(req).getBytes());
-            case HEAD -> outputToClient.write(engine.headResponse(req).getBytes());
-            case GET -> outputToClient.write(engine.getResponse(req).getBytes());
-
-        }
-
     }
 
     private void sendImageResponse(OutputStream outputToClient, Request req) throws IOException {
 
         String header = "";
         byte[] data = new byte[0];
-        File file = Path.of("Server", "target", "classes", "praiseTheSun.png").toFile();
+        File file = Path.of("Server", "target", "classes", "praiseTheSun.jpg").toFile();
 
         if (req.getUrl().endsWith("klutch")) {
 
@@ -83,17 +66,18 @@ public class Server {
 
             file = Path.of("Server", "target", "classes", "fighter.png").toFile();
 
-        } else {
+        } else if (req.getUrl().endsWith("sun")) {
+
             file = Path.of("Server", "target", "classes", "praiseTheSun.jpg").toFile();
+
         }
 
 
-        if (!(file.exists() && !file.isDirectory())) {
+       /* if (!(file.exists() && !file.isDirectory())) {
 
             header = "HTTP/1.1 404 File Not Found\r\nContent-length: 0\r\n\r\n";
 
-
-        } else {
+        */
 
             try (FileInputStream fileInputStream = new FileInputStream(file)) {
 
@@ -107,7 +91,6 @@ public class Server {
             } catch (IOException error) {
                 error.printStackTrace();
             }
-        }
 
         outputToClient.write(header.getBytes());
         outputToClient.write(data);
