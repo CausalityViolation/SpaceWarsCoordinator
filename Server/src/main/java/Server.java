@@ -1,5 +1,8 @@
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -28,7 +31,8 @@ public class Server {
 
     private void sendResponse(OutputStream outputToClient, Request req) throws IOException {
 
-        if (req.getUrl().length()>1) {
+        //Justera så den kan hantera fler saker än BILDER
+        if (req.getUrl().length() > 1) {
 
             sendImageResponse(outputToClient, req);
 
@@ -79,18 +83,18 @@ public class Server {
 
         */
 
-            try (FileInputStream fileInputStream = new FileInputStream(file)) {
+        try (FileInputStream fileInputStream = new FileInputStream(file)) {
 
-                data = new byte[(int) file.length()];
-                fileInputStream.read(data);
+            data = new byte[(int) file.length()];
+            fileInputStream.read(data);
 
-                var contentType = Files.probeContentType(file.toPath());
+            var contentType = Files.probeContentType(file.toPath());
 
-                header = "HTTP/1.1 200 OK\r\nContent-Type: " + contentType + "\r\nContent-length: " + data.length + "\r\n\r\n";
+            header = "HTTP/1.1 200 OK\r\nContent-Type: " + contentType + "\r\nContent-length: " + data.length + "\r\n\r\n";
 
-            } catch (IOException error) {
-                error.printStackTrace();
-            }
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
 
         outputToClient.write(header.getBytes());
         outputToClient.write(data);
@@ -99,6 +103,27 @@ public class Server {
 
 
     }
+
+    private void sendJsonResponse(OutputStream outputToClient) throws IOException {
+
+        //Importera DatabasLISTAN här
+
+
+        Gson gson = new Gson();
+
+        String json = gson.toJson(DATABASLISTAN);
+        System.out.println(json);
+
+        byte[] data = json.getBytes(StandardCharsets.UTF_8);
+
+        String header = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-length: " + data.length + "\r\n\r\n";
+
+        outputToClient.write(header.getBytes());
+        outputToClient.write(data);
+        outputToClient.flush();
+
+    }
+
 
     private Request readRequest(BufferedReader inputFromClient) throws IOException {
 
