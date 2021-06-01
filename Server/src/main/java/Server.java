@@ -44,10 +44,11 @@ public class Server {
 
             sendImageResponse(outputToClient, req);
 
-        } else if (req.getUrl().endsWith("sun")) {
+        } else {
 
+            //String header = "HTTP/1.1 404 File Not Found\r\nContent-length: 0\r\n\r\n";
+            //outputToClient.write(header.getBytes());
             sendImageResponse(outputToClient, req);
-
         }
 
         switch (req.getType()) {
@@ -55,6 +56,7 @@ public class Server {
             case POST -> outputToClient.write(engine.postResponse(req).getBytes());
             case HEAD -> outputToClient.write(engine.headResponse(req).getBytes());
             case GET -> outputToClient.write(engine.getResponse(req).getBytes());
+
         }
 
     }
@@ -81,7 +83,7 @@ public class Server {
 
             file = Path.of("Server", "target", "classes", "fighter.png").toFile();
 
-        } else if (req.getUrl().endsWith("sun")) {
+        } else {
             file = Path.of("Server", "target", "classes", "praiseTheSun.jpg").toFile();
         }
 
@@ -100,7 +102,7 @@ public class Server {
 
                 var contentType = Files.probeContentType(file.toPath());
 
-                header = "HTTP/1.1 200 OK\r\nContent-Type: "+contentType+"\r\nContent-length: " + data.length +"\r\n\r\n";
+                header = "HTTP/1.1 200 OK\r\nContent-Type: " + contentType + "\r\nContent-length: " + data.length + "\r\n\r\n";
 
             } catch (IOException error) {
                 error.printStackTrace();
