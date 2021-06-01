@@ -28,6 +28,20 @@ public class SpaceShip {
 
     }
 
+    public SpaceShip(Request req) {
+
+        if (req.getUrlParams().containsKey("modelName")) {
+            modelName = req.getUrlParams().get("modelName");
+        } else {
+            throw new RuntimeException("Invalid Input Parameters. Please Refer To Root Page For Readme");
+        }
+
+        if (req.getUrlParams().containsKey("price")) price = Integer.parseInt(req.getUrlParams().get("price"));
+        if (req.getUrlParams().containsKey("tonnage")) tonnage = Integer.parseInt(req.getUrlParams().get("tonnage"));
+        if (req.getUrlParams().containsKey("passengerCapacity"))
+            passengerCapacity = Integer.parseInt(req.getUrlParams().get("passengerCapacity"));
+    }
+
     public String getModelName() {
         return modelName;
     }
@@ -46,11 +60,10 @@ public class SpaceShip {
 
     @Override
     public String toString() {
-        return "Spaceship{" +
-                "modelName='" + modelName + '\'' +
-                ", price=" + price +
-                ", tonnage=" + tonnage +
-                ", passengerCapacity=" + passengerCapacity +
-                '}';
+        return "Spaceships In Stock: " +
+                "\nModel Name: " + modelName + '\'' +
+                "\nPrice: " + price +
+                "\nTonnage: " + tonnage +
+                "\nPassenger Capacity: " + passengerCapacity;
     }
 }

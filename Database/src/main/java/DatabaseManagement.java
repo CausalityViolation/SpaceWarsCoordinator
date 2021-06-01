@@ -18,4 +18,17 @@ public class DatabaseManagement {
 
     }
 
+    public void addShip(Request req) {
+
+        EntityManager em = emf.createEntityManager();
+
+        SpaceShip ss = new SpaceShip(req);
+
+        em.getTransaction().begin();
+        em.persist(ss);
+        em.getTransaction().commit();
+        em.close();
+
+    }
+
 }

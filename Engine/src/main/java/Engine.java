@@ -27,18 +27,7 @@ public class Engine {
     public String getResponse(Request req) {
         return """
                 HTTP/1.1 200 OK\r\n\r\n
-                Content-Length: 0\r\n\r\n
-                                
-                ====================================
-                  ＜￣｀ヽ、　　   　 　／￣＞
-                  　ゝ、　　＼ ／⌒ヽ,ノ   /
-                  　    ゝ、　`（ ´oωo)／
-                         　>　 　 　,ノ
-                           ∠_,,,/´””
-                        GET, YOU FOOLS!!!
-                   Regards From Dolen Support
-                ====================================
-                                
+                Content-Length: 0\r\n\r\n           
                 """;
     }
 

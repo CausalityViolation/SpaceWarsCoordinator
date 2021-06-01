@@ -11,6 +11,7 @@ import java.util.List;
 public class Server {
 
     Engine engine = new Engine();
+    DatabaseManagement db = new DatabaseManagement();
 
     public void handleConnection(Socket client) {
 
@@ -32,9 +33,21 @@ public class Server {
     private void sendResponse(OutputStream outputToClient, Request req) throws IOException {
 
         //Justera så den kan hantera fler saker än BILDER
-        if (req.getUrl().length() > 1) {
+        if (req.getUrl().endsWith("store")) {
+
+            sendJsonResponse(outputToClient);
+
+
+        } else if (req.getUrl().contains("add")) {
+
+            db.addShip(req);
+            outputToClient.write(engine.getResponse(req).getBytes());
+
+
+        } else if (req.getUrl().length() > 1) {
 
             sendImageResponse(outputToClient, req);
+
 
         } else {
 
@@ -106,12 +119,11 @@ public class Server {
 
     private void sendJsonResponse(OutputStream outputToClient) throws IOException {
 
-        //Importera DatabasLISTAN här
-
+        DatabaseManagement dbm = new DatabaseManagement();
 
         Gson gson = new Gson();
 
-        String json = gson.toJson(DATABASLISTAN);
+        String json = gson.toJson(dbm.showShips());
         System.out.println(json);
 
         byte[] data = json.getBytes(StandardCharsets.UTF_8);
