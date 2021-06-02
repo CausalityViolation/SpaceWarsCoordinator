@@ -1,4 +1,9 @@
+package server;
+
 import com.google.gson.Gson;
+import database.DatabaseManagement;
+import engine.Engine;
+import engine.Request;
 
 import java.io.*;
 import java.net.Socket;
@@ -65,36 +70,30 @@ public class Server {
 
         String header = "";
         byte[] data = new byte[0];
-        File file = Path.of("Server", "target", "classes", "praiseTheSun.jpg").toFile();
+        File file = Path.of("server", "target", "classes", "praiseTheSun.jpg").toFile();
 
         if (req.getUrl().endsWith("klutch")) {
 
-            file = Path.of("Server", "target", "classes", "klutch.png").toFile();
+            file = Path.of("server", "target", "classes", "klutch.png").toFile();
 
         } else if (req.getUrl().endsWith("xwing")) {
 
-            file = Path.of("Server", "target", "classes", "xwing.jpeg").toFile();
+            file = Path.of("server", "target", "classes", "xwing.jpeg").toFile();
 
         } else if (req.getUrl().endsWith("falcon")) {
 
-            file = Path.of("Server", "target", "classes", "falcon.jpg").toFile();
+            file = Path.of("server", "target", "classes", "falcon.jpg").toFile();
 
         } else if (req.getUrl().endsWith("fighter")) {
 
-            file = Path.of("Server", "target", "classes", "fighter.png").toFile();
+            file = Path.of("server", "target", "classes", "fighter.png").toFile();
 
         } else if (req.getUrl().endsWith("sun")) {
 
-            file = Path.of("Server", "target", "classes", "praiseTheSun.jpg").toFile();
+            file = Path.of("server", "target", "classes", "praiseTheSun.jpg").toFile();
 
         }
 
-
-       /* if (!(file.exists() && !file.isDirectory())) {
-
-            header = "HTTP/1.1 404 File Not Found\r\nContent-length: 0\r\n\r\n";
-
-        */
 
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
 

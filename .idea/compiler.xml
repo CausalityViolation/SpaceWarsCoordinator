@@ -16,8 +16,10 @@
       <module name="Client" target="16" />
       <module name="Database" target="16" />
       <module name="Engine" target="16" />
+      <module name="Greetings" target="16" />
       <module name="Server" target="16" />
       <module name="SpaceWarsCoordinator" target="16" />
+      <module name="Spi" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>

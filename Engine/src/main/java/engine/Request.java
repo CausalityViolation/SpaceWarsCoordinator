@@ -1,3 +1,5 @@
+package engine;
+
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
@@ -66,7 +68,7 @@ public class Request {
 
     @Override
     public String toString() {
-        return "<Request>" +
+        return "<engine.Request>" +
                 "\nType:  " + type +
                 "\nUrl: " + url +
                 "\nParams: " + urlParams;

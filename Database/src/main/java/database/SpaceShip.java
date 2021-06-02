@@ -1,3 +1,7 @@
+package database;
+
+import engine.Request;
+
 import javax.persistence.*;
 
 
