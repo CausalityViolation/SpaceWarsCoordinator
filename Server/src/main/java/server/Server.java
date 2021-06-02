@@ -37,7 +37,6 @@ public class Server {
 
     private void sendResponse(OutputStream outputToClient, Request req) throws IOException {
 
-        //Justera så den kan hantera fler saker än BILDER
         if (req.getUrl().endsWith("store")) {
 
             sendJsonResponse(outputToClient);
@@ -112,7 +111,6 @@ public class Server {
         outputToClient.write(data);
 
         outputToClient.flush();
-
 
     }
 

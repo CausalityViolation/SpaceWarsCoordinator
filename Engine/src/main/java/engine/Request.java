@@ -52,13 +52,18 @@ public class Request {
 
         s = URLDecoder.decode(s);
 
+        System.out.println(s);
+
         if (s.contains("?")) {
 
             String[] splitUrl = s.split("[?=&]");
 
+            System.out.println(s);
+
             if (splitUrl.length > 1) {
                 for (int i = 1; i < (splitUrl.length - 1); i = i + 2) {
                     urlParams.put(splitUrl[i], splitUrl[i + 1]);
+                    System.out.println(s);
                 }
                 return splitUrl[0];
             }
@@ -68,7 +73,7 @@ public class Request {
 
     @Override
     public String toString() {
-        return "<engine.Request>" +
+        return "<Request>" +
                 "\nType:  " + type +
                 "\nUrl: " + url +
                 "\nParams: " + urlParams;
