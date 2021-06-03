@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/Database/Database.iml" filepath="$PROJECT_DIR$/Database/Database.iml" />
       <module fileurl="file://$PROJECT_DIR$/Engine/Engine.iml" filepath="$PROJECT_DIR$/Engine/Engine.iml" />
       <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ServiceProviderInterface/ServiceProviderInterface.iml" filepath="$PROJECT_DIR$/ServiceProviderInterface/ServiceProviderInterface.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SpaceWarsCoordinator.iml" filepath="$PROJECT_DIR$/.idea/SpaceWarsCoordinator.iml" />
     </modules>
   </component>
