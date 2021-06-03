@@ -1,0 +1,3 @@
+module ServiceProviderInterface {
+    exports Spi;
+}
