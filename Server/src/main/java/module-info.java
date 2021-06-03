@@ -1,5 +1,7 @@
+import plugins.HelloThere;
+
 module Server {
-    uses plugins.Hello;
+    uses HelloThere;
     uses Spi.Greeting;
     requires com.google.gson;
     requires Database;

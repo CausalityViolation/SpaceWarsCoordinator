@@ -4,4 +4,6 @@ module Hellos {
 
     requires ServiceProviderInterface;
 
+    provides Spi.Greeting with plugins.Insult, plugins.HelloThere;
+
 }

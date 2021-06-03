@@ -1,6 +1,6 @@
 package server;
 
-import Spi.Adress;
+import Spi.Url;
 import Spi.Greeting;
 
 import java.util.ServiceLoader;
@@ -9,17 +9,16 @@ import static java.util.Objects.nonNull;
 
 public class GreetingsTest {
 
+
     public static void main(String[] args) {
 
         ServiceLoader<Greeting> greetings = ServiceLoader.load(Greeting.class);
 
-        for (Greeting hello : greetings) {
+        for (Greeting greeting : greetings) {
+            Url annotation = greeting.getClass().getAnnotation(Url.class);
 
-            Adress annotation = hello.getClass().getAnnotation(Adress.class);
             if (nonNull(annotation) && annotation.value().equals("/kenobi")) {
-
-                System.out.println(hello.greeting("Kenobi"));
-
+                System.out.println(greeting.greeting("Kenobi"));
             }
         }
     }
