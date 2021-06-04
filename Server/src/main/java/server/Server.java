@@ -1,5 +1,7 @@
 package server;
 
+import Spi.Poem;
+import Spi.Url;
 import com.google.gson.Gson;
 import database.DatabaseManagement;
 import engine.Engine;
@@ -12,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ServiceLoader;
+
 
 public class Server {
 
@@ -48,10 +52,14 @@ public class Server {
             outputToClient.write(engine.getResponse(req).getBytes());
 
 
-        } else if (req.getUrl().length() > 1) {
+        } else if (req.getUrl().contains("/image")) {
 
             sendImageResponse(outputToClient, req);
 
+
+        } else if (req.getUrl().contains("/poem")) {
+
+            sendPoemResponse(outputToClient, req);
 
         } else {
 
@@ -71,23 +79,23 @@ public class Server {
         byte[] data = new byte[0];
         File file = Path.of("server", "target", "classes", "praiseTheSun.jpg").toFile();
 
-        if (req.getUrl().endsWith("klutch")) {
+        if (req.getUrl().endsWith("/image/klutch")) {
 
             file = Path.of("server", "target", "classes", "klutch.png").toFile();
 
-        } else if (req.getUrl().endsWith("xwing")) {
+        } else if (req.getUrl().endsWith("/image/xwing")) {
 
             file = Path.of("server", "target", "classes", "xwing.jpeg").toFile();
 
-        } else if (req.getUrl().endsWith("falcon")) {
+        } else if (req.getUrl().endsWith("/image/falcon")) {
 
             file = Path.of("server", "target", "classes", "falcon.jpg").toFile();
 
-        } else if (req.getUrl().endsWith("fighter")) {
+        } else if (req.getUrl().endsWith("/image/fighter")) {
 
             file = Path.of("server", "target", "classes", "fighter.png").toFile();
 
-        } else if (req.getUrl().endsWith("sun")) {
+        } else if (req.getUrl().endsWith("/image/sun")) {
 
             file = Path.of("server", "target", "classes", "praiseTheSun.jpg").toFile();
 
@@ -130,6 +138,21 @@ public class Server {
         outputToClient.write(header.getBytes());
         outputToClient.write(data);
         outputToClient.flush();
+
+    }
+
+    private void sendPoemResponse(OutputStream outputToClient, Request req) throws IOException {
+
+        ServiceLoader<Poem> sendDeath = ServiceLoader.load(Poem.class);
+
+        for (Poem poem : sendDeath) {
+            Url annotation = poem.getClass().getAnnotation(Url.class);
+
+            if (req.getUrl().equals(annotation.value())) {
+                outputToClient.write(poem.sendPoem().getBytes());
+            }
+
+        }
 
     }
 

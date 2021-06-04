@@ -1,25 +1,27 @@
 package server;
 
+import Spi.Poem;
 import Spi.Url;
-import Spi.Greeting;
-
 import java.util.ServiceLoader;
-
 import static java.util.Objects.nonNull;
-
 public class GreetingsTest {
 
 
     public static void main(String[] args) {
 
-        ServiceLoader<Greeting> greetings = ServiceLoader.load(Greeting.class);
+        ServiceLoader<Poem> sendDeath = ServiceLoader.load(Poem.class);
 
-        for (Greeting greeting : greetings) {
-            Url annotation = greeting.getClass().getAnnotation(Url.class);
+        for (Poem helloThere : sendDeath) {
+            Url annotation = helloThere.getClass().getAnnotation(Url.class);
 
-            if (nonNull(annotation) && annotation.value().equals("/kenobi")) {
-                System.out.println(greeting.greeting("Kenobi"));
+            if (nonNull(annotation) && annotation.value().equals("/poem/death")) {
+                System.out.println(helloThere.sendPoem());
             }
+
+            else if (nonNull(annotation) && annotation.value().equals("/poem/timber")) {
+                System.out.println(helloThere.sendPoem());
+            }
+
         }
     }
 }

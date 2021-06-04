@@ -1,11 +1,15 @@
-import plugins.HelloThere;
+
 
 module Server {
-    uses HelloThere;
-    uses Spi.Greeting;
+
+    uses PoemResponse.Death;
+    uses Spi.Poem;
+
     requires com.google.gson;
     requires Database;
     requires Engine;
     requires ServiceProviderInterface;
-    requires Hellos;
+    requires PoemResponse;
+
+
 }

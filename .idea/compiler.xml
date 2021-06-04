@@ -7,11 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Database" />
+        <module name="PoemResponse" />
         <module name="Server" />
         <module name="Client" />
         <module name="Engine" />
         <module name="ServiceProviderInterface" />
-        <module name="Hellos" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,6 +20,7 @@
       <module name="Engine" target="16" />
       <module name="Greetings" target="16" />
       <module name="Hellos" target="16" />
+      <module name="PoemResponse" target="16" />
       <module name="Server" target="16" />
       <module name="ServiceProviderInterface" target="16" />
       <module name="SpaceWarsCoordinator" target="16" />

@@ -13,6 +13,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/Greetings/pom.xml" />
+        <option value="$PROJECT_DIR$/Hellos/pom.xml" />
         <option value="$PROJECT_DIR$/Spi/pom.xml" />
       </set>
     </option>
