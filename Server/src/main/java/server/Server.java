@@ -144,16 +144,31 @@ public class Server {
     private void sendPoemResponse(OutputStream outputToClient, Request req) throws IOException {
 
         ServiceLoader<Poem> sendDeath = ServiceLoader.load(Poem.class);
-
+        byte[] data;
+        int count = 0;
         for (Poem poem : sendDeath) {
+
             Url annotation = poem.getClass().getAnnotation(Url.class);
 
             if (req.getUrl().equals(annotation.value())) {
+
+                count++;
+
+                data = poem.sendPoem().getBytes();
+
+                String header = "HTTP/1.1 200 OK\r\nContent-Type: text/txt\r\nContent-length: "
+                        + data.length + "\r\n\r\n";
+
+                outputToClient.write(header.getBytes());
+                System.out.println(poem.sendPoem());
                 outputToClient.write(poem.sendPoem().getBytes());
             }
-
         }
 
+        if (count == 0) {
+
+            sendImageResponse(outputToClient, req);
+        }
     }
 
 

@@ -8,8 +8,6 @@ import java.io.*;
 
 public class Main {
 
-    //Nästa steg: Importera ServiceLoader och implementera interface (se föreläsningen om GREETING interfacen)
-
     public static void main(String[] args) {
 
         Server server = new Server();

@@ -1,5 +1,4 @@
 
-
 module Server {
 
     uses PoemResponse.Death;
