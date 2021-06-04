@@ -75,41 +75,50 @@ public class Server {
 
     private void sendImageResponse(OutputStream outputToClient, Request req) throws IOException {
 
-        String header = "";
         byte[] data = new byte[0];
+        int count = 0;
         File file = Path.of("server", "target", "classes", "praiseTheSun.jpg").toFile();
 
         if (req.getUrl().endsWith("/image/klutch")) {
 
+            count++;
             file = Path.of("server", "target", "classes", "klutch.png").toFile();
 
         } else if (req.getUrl().endsWith("/image/xwing")) {
 
+            count++;
             file = Path.of("server", "target", "classes", "xwing.jpeg").toFile();
 
         } else if (req.getUrl().endsWith("/image/falcon")) {
 
+            count++;
             file = Path.of("server", "target", "classes", "falcon.jpg").toFile();
 
         } else if (req.getUrl().endsWith("/image/fighter")) {
 
+            count++;
             file = Path.of("server", "target", "classes", "fighter.png").toFile();
 
         } else if (req.getUrl().endsWith("/image/sun")) {
 
+            count++;
             file = Path.of("server", "target", "classes", "praiseTheSun.jpg").toFile();
 
         }
 
+        String header = "";
 
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
 
             data = new byte[(int) file.length()];
             fileInputStream.read(data);
-
             var contentType = Files.probeContentType(file.toPath());
 
-            header = "HTTP/1.1 200 OK\r\nContent-Type: " + contentType + "\r\nContent-length: " + data.length + "\r\n\r\n";
+            header = "HTTP/1.1 404 Not Found\r\nContent-Type: " + contentType + "\r\nContent-length: " + data.length + "\r\n\r\n";
+
+            if (count>0) {
+                header = "HTTP/1.1 200 OK\r\nContent-Type: " + contentType + "\r\nContent-length: " + data.length + "\r\n\r\n";
+            }
 
         } catch (IOException error) {
             error.printStackTrace();
