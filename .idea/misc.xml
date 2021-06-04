@@ -7,7 +7,15 @@
         <option value="$PROJECT_DIR$/Engine/pom.xml" />
         <option value="$PROJECT_DIR$/Server/pom.xml" />
         <option value="$PROJECT_DIR$/Database/pom.xml" />
+        <option value="$PROJECT_DIR$/Client/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Greetings/pom.xml" />
+        <option value="$PROJECT_DIR$/Hellos/pom.xml" />
+        <option value="$PROJECT_DIR$/Spi/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="16" project-jdk-type="JavaSDK" />

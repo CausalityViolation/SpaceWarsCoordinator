@@ -1,9 +1,12 @@
+import engine.HTTPtypes;
+import engine.Request;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RequestTest {
 
@@ -21,7 +24,7 @@ public class RequestTest {
         testList.add(testURL);
         Request request = new Request(testList);
 
-        assertThat(request.url).isEqualTo("/");
+        assertThat(request.getUrl()).isEqualTo("/");
     }
 
     @Test
@@ -36,8 +39,8 @@ public class RequestTest {
         testList.add(testURL);
         Request request = new Request(testList);
 
-        assertThat(request.url).isEqualTo("/index.html");
-        assertThat(request.type).isEqualTo(HTTPtypes.GET);
+        assertThat(request.getUrl()).isEqualTo("/index.html");
+        assertThat(request.getType()).isEqualTo(HTTPtypes.GET);
 
     }
 
@@ -53,7 +56,7 @@ public class RequestTest {
         testList.add(testURL);
         Request request = new Request(testList);
 
-        assertThat(request.type).isEqualTo(HTTPtypes.HEAD);
+        assertThat(request.getType()).isEqualTo(HTTPtypes.HEAD);
 
     }
 
@@ -69,9 +72,9 @@ public class RequestTest {
         testList.add(testURL);
         Request request = new Request(testList);
 
-        assertThat(request.type).isEqualTo(HTTPtypes.GET);
-        assertThat(request.url).isEqualTo("/products");
-        assertThat(request.urlParams).containsEntry("id", "23");
+        assertThat(request.getType()).isEqualTo(HTTPtypes.GET);
+        assertThat(request.getUrl()).isEqualTo("/products");
+        assertThat(request.getUrlParams()).containsEntry("id", "23");
     }
 
     @Test
@@ -86,9 +89,9 @@ public class RequestTest {
         testList.add(testURL);
         Request request = new Request(testList);
 
-        assertThat(request.type).isEqualTo(HTTPtypes.POST);
-        assertThat(request.url).isEqualTo("/products");
-        assertThat(request.urlParams).containsEntry("id", "23").containsEntry("order", "ascend");
+        assertThat(request.getType()).isEqualTo(HTTPtypes.POST);
+        assertThat(request.getUrl()).isEqualTo("/products");
+        assertThat(request.getUrlParams()).containsEntry("id", "23").containsEntry("order", "ascend");
     }
 
     @Test
@@ -103,9 +106,9 @@ public class RequestTest {
         testList.add(testURL);
         Request request = new Request(testList);
 
-        assertThat(request.type).isEqualTo(HTTPtypes.GET);
-        assertThat(request.url).isEqualTo("/products");
-        assertThat(request.urlParams).containsEntry("text", "Hello there");
+        assertThat(request.getType()).isEqualTo(HTTPtypes.GET);
+        assertThat(request.getUrl()).isEqualTo("/products");
+        assertThat(request.getUrlParams()).containsEntry("text", "Hello there");
     }
 
     @Test
@@ -120,9 +123,9 @@ public class RequestTest {
         testList.add(testURL);
         Request request = new Request(testList);
 
-        assertThat(request.type).isEqualTo(HTTPtypes.GET);
-        assertThat(request.url).isEqualTo("/products");
-        assertThat(request.urlParams).containsEntry("t e x t", "Måste fixa");
+        assertThat(request.getType()).isEqualTo(HTTPtypes.GET);
+        assertThat(request.getUrl()).isEqualTo("/products");
+        assertThat(request.getUrlParams()).containsEntry("t e x t", "Måste fixa");
     }
 
 
@@ -138,8 +141,16 @@ public class RequestTest {
         testList.add(testURL);
         Request request = new Request(testList);
 
-        assertThat(request.type).isEqualTo(HTTPtypes.GET);
-        assertThat(request.url).isEqualTo("/a folder/first document.pdf");
-        assertThat(request.urlParams).isEmpty();
+        assertThat(request.getType()).isEqualTo(HTTPtypes.GET);
+        assertThat(request.getUrl()).isEqualTo("/a folder/first document.pdf");
+        assertThat(request.getUrlParams()).isEmpty();
+    }
+
+    @Test
+    void invalidRequestThrowsException() {
+
+        testList.add("BAJSKORV");
+        testList.add("JIMI HENDRIX");
+        assertThrows(RuntimeException.class, () -> new Request(testList));
     }
 }

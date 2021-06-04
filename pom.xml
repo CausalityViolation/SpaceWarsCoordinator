@@ -13,6 +13,10 @@
         <module>Engine</module>
         <module>Database</module>
         <module>Client</module>
+        <module>Spi</module>
+        <module>ServiceProviderInterface</module>
+        <module>Hellos</module>
+        <module>ImageResponse</module>
     </modules>
 
     <properties>
