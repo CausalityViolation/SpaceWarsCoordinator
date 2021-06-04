@@ -46,8 +46,6 @@
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.24" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.11.4" level="project" />
     <orderEntry type="module" module-name="ServiceProviderInterface" />
-    <orderEntry type="library" name="Maven: org.example:Hellos:1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.example:ImageResponse:1.0-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="PoemResponse" />
   </component>
 </module>
