@@ -8,4 +8,4 @@ COPY PoemResponse/target/classes /app/poemResponse
 COPY Server/target/web /app/web
 
 
-ENTRYPOINT [ "java", "--module-path", "/app/database:/app/engine:/app/server:/app/serviceprovider:/app/poemResponse:/app/modules", "-m" ,"Server/server.Main" ]
+ENTRYPOINT [ "java", "--module-path", "/app/database:/app/engine:/app/server:/app/serviceprovider:/app/poemResponse:/app/modules:/app/web", "-m" ,"Server/server.Main" ]

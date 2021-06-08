@@ -77,32 +77,32 @@ public class Server {
 
         byte[] data = new byte[0];
         int count = 0;
-        File file = Path.of("server", "target", "classes", "praiseTheSun.jpg").toFile();
+        File file = Path.of("/app/web/praiseTheSun.jpg").toFile();
 
         if (req.getUrl().endsWith("/image/klutch")) {
 
             count++;
-            file = Path.of("server", "target", "classes", "klutch.png").toFile();
+            file = Path.of("/app/web/klutch.png").toFile();
 
         } else if (req.getUrl().endsWith("/image/xwing")) {
 
             count++;
-            file = Path.of("server", "target", "classes", "xwing.jpeg").toFile();
+            file = Path.of("/app/web/xwing.jpeg").toFile();
 
         } else if (req.getUrl().endsWith("/image/falcon")) {
 
             count++;
-            file = Path.of("server", "target", "classes", "falcon.jpg").toFile();
+            file = Path.of("/app/web/falcon.jpg").toFile();
 
         } else if (req.getUrl().endsWith("/image/fighter")) {
 
             count++;
-            file = Path.of("server", "target", "classes", "fighter.png").toFile();
+            file = Path.of("/app/web/fighter.png").toFile();
 
         } else if (req.getUrl().endsWith("/image/sun")) {
 
             count++;
-            file = Path.of("server", "target", "classes", "praiseTheSun.jpg").toFile();
+            file = Path.of("/app/web/praiseTheSun.jpg").toFile();
 
         }
 
@@ -116,7 +116,7 @@ public class Server {
 
             header = "HTTP/1.1 404 Not Found\r\nContent-Type: " + contentType + "\r\nContent-length: " + data.length + "\r\n\r\n";
 
-            if (count>0) {
+            if (count > 0) {
                 header = "HTTP/1.1 200 OK\r\nContent-Type: " + contentType + "\r\nContent-length: " + data.length + "\r\n\r\n";
             }
 
