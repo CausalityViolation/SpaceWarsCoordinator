@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
+    ports:
+      - "80:80"
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: server
+    container_name: server
+    ports:
+      - "8080:8080"
+    restart: "no"

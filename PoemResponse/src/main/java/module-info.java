@@ -1,8 +1,7 @@
 module PoemResponse {
+    requires ServiceProviderInterface;
 
     exports PoemResponse;
-
-    requires ServiceProviderInterface;
 
     provides Spi.Poem with PoemResponse.Death, PoemResponse.Timber;
 }
