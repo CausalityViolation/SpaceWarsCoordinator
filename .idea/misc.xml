@@ -8,6 +8,8 @@
         <option value="$PROJECT_DIR$/Server/pom.xml" />
         <option value="$PROJECT_DIR$/Database/pom.xml" />
         <option value="$PROJECT_DIR$/Client/pom.xml" />
+        <option value="$PROJECT_DIR$/ServiceProviderInterface/pom.xml" />
+        <option value="$PROJECT_DIR$/PoemResponse/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -36,11 +36,42 @@
         </dependency>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>ImageResponse</artifactId>
+            <artifactId>PoemResponse</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.build.sourceDirectory}/../resources</directory><!-- from -->
+                <targetPath>${project.build.directory}/web</targetPath><!-- to -->
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}/modules
+                            </outputDirectory>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
